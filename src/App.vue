@@ -1,5 +1,9 @@
-<script setup></script>
+<script setup>
+  import VButton from './components/VButton.vue'
+</script>
 
-<template></template>
+<template>
+  <VButton>Начать игру</VButton>
+</template>
 
 <style scoped></style>

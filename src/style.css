@@ -1,19 +1,13 @@
 :root {
-  --color-primary: #ffffff;
-  --color-bg: #343d4b;
-  --color-primary-inverted: #000000;
-  --color-bg-card: #272e37;
-  --color-bg-main: #222831;
-  --gradient: linear-gradient(91deg, rgba(144, 217, 224, 0.9) 0.2%, rgba(84, 96, 230, 0.9) 100%);
-  --gradient-inverted: linear-gradient(
-    256deg,
-    rgba(144, 217, 224, 0.9) 9.04%,
-    rgba(84, 96, 230, 0.9) 100%
-  );
-  --font: 'Montserrat', sans-serif;
+  --color-primary: #222222;
+  --color-secondary: #ffffff;
+  --color-blue: #008bfe;
+  --color-bg: #f0f4f8;
 
-  --br10: 10px;
-  --br25: 25px;
+  --font: 'Roboto', sans-serif;
+
+  --br12: 12px;
+  --br100: 100px;
 }
 
 body {
