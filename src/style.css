@@ -1,12 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --color-primary: #222222;
   --color-secondary: #ffffff;
   --color-blue: #008bfe;
   --color-bg: #f0f4f8;
+  --color-blue-light: #cce8ff;
 
   --font: 'Roboto', sans-serif;
 
   --br12: 12px;
+  --br16: 16px;
+  --br36: 36px;
   --br100: 100px;
 }
 
@@ -18,8 +27,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-bg);
   color: var(--color-primary);
+}
 
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
+h1 {
+  font-size: 16px;
+  font-weight: 700;
 }

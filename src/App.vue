@@ -1,9 +1,23 @@
 <script setup>
   import VButton from './components/VButton.vue'
+  import VCard from './components/VCard.vue'
+  import VScore from './components/VScore.vue'
 </script>
 
 <template>
-  <VButton>Начать игру</VButton>
+  <header>
+    <VScore />
+  </header>
+  <main>
+    <VButton>Начать игру</VButton>
+    <VCard />
+  </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+  main {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+  }
+</style>
