@@ -1,34 +1,25 @@
 <script setup>
   import VIcons from './VIcons.vue'
 
-  let status = false
-  let isActive = false
-
-  function toUpend() {
-    isActive = !isActive
-  }
-
-  function changeStatus() {
-    status = !status
-  }
+  defineEmits(['check-answer', 'change-status'])
 </script>
 
 <template>
   <div class="card__container">
-    <div class="card" :class="{ 'card-upend': isActive }">
+    <div class="card">
       <div class="card__front">
         <span class="card__numbering">01</span>
         <p class="card__word">Hello</p>
-        <button class="card__btn" @click="toUpend">ПЕРЕВЕРНУТЬ</button>
+        <button class="card__btn" @click="$emit('check-answer')">ПЕРЕВЕРНУТЬ</button>
       </div>
       <div class="card__back">
         <span class="card__numbering">01</span>
         <p class="card__word">Привет</p>
         <div class="card__change-status">
-          <button class="change-status__btn">
+          <button class="change-status__btn" @click="$emit('change-status')">
             <VIcons icon-id="cross" :width="24" :height="24" />
           </button>
-          <button class="change-status__btn">
+          <button class="change-status__btn" @click="$emit('change-status')">
             <VIcons icon-id="tick" :width="24" :height="24" />
           </button>
         </div>
