@@ -3,8 +3,8 @@
 
   const props = defineProps({
     value: {
-      type: String,
-      default: '100',
+      type: Number,
+      default: 100,
     },
   })
 </script>
