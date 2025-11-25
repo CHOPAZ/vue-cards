@@ -88,7 +88,7 @@
   .card__btn {
     position: absolute;
     bottom: -10px;
-    left: 68px;
+    left: 50px;
     border: none;
     background-color: var(--color-secondary);
     cursor: pointer;
@@ -102,15 +102,15 @@
     gap: 32px;
 
     bottom: -12px;
-    left: 82px;
+    left: 60px;
     border: none;
     background-color: var(--color-secondary);
-    cursor: pointer;
     font-size: 16px;
     padding: 0 6px;
   }
 
   .change-status__btn {
+    cursor: pointer;
     border: 0;
     background-color: var(--color-secondary);
   }
