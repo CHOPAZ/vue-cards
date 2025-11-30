@@ -1,21 +1,34 @@
 <script setup>
   import VIcons from './VIcons.vue'
 
+  const props = defineProps({
+    word: String,
+    translation: String,
+    state: String,
+    status: String,
+  })
+
   defineEmits(['check-answer', 'change-status'])
 </script>
 
 <template>
   <div class="card__container">
-    <div class="card">
-      <div class="card__front">
+    <div class="card" :class="{ rotate: props.state === 'opened' }">
+      <div v-if="props.state === 'closed'" class="card__front">
         <span class="card__numbering">01</span>
-        <p class="card__word">Hello</p>
+        <p class="card__word">{{ props.word }}</p>
         <button class="card__btn" @click="$emit('check-answer')">ПЕРЕВЕРНУТЬ</button>
       </div>
-      <div class="card__back">
+      <div v-else-if="props.state === 'opened'" class="card__back">
         <span class="card__numbering">01</span>
-        <p class="card__word">Привет</p>
-        <div class="card__change-status">
+        <div v-if="props.status === 'success'" class="card__status">
+          <VIcons icon-id="tick" :width="36" :height="36" />
+        </div>
+        <div v-if="props.status === 'fail'" class="card__status">
+          <VIcons icon-id="cross" :width="39" :height="39" />
+        </div>
+        <p class="card__word">{{ props.translation }}</p>
+        <div v-if="props.status === 'pending'" class="card__change-status">
           <button class="change-status__btn" @click="$emit('change-status')">
             <VIcons icon-id="cross" :width="24" :height="24" />
           </button>
@@ -23,6 +36,7 @@
             <VIcons icon-id="tick" :width="24" :height="24" />
           </button>
         </div>
+        <div v-else class="card__end">ЗАВЕРШЕНО</div>
       </div>
     </div>
   </div>
@@ -48,7 +62,7 @@
     transition: transform 1s;
   }
 
-  .card__container:hover .card {
+  .rotate {
     transform: rotateY(180deg);
   }
 
@@ -77,6 +91,13 @@
     position: absolute;
     top: -10px;
     left: 20px;
+    background-color: var(--color-secondary);
+  }
+
+  .card__status {
+    position: absolute;
+    top: -18px;
+    left: 88px;
     background-color: var(--color-secondary);
   }
 
@@ -113,5 +134,15 @@
     cursor: pointer;
     border: 0;
     background-color: var(--color-secondary);
+  }
+
+  .card__end {
+    position: absolute;
+    bottom: -10px;
+    left: 58px;
+    border: none;
+    background-color: var(--color-secondary);
+    cursor: pointer;
+    font-size: 16px;
   }
 </style>
