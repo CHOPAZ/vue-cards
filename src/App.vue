@@ -5,12 +5,32 @@
   import { reactive, ref } from 'vue'
 
   let score = ref(50)
-  const cardData = reactive({
-    word: 'Hello', //исходное слово
-    translation: 'Привет', // Перевод
-    state: 'closed', // closed | opened
-    staus: 'pending', //pending | fail | success
-  })
+  const cardData = reactive([
+    {
+      word: 'Hello', //исходное слово
+      translation: 'Привет', // Перевод
+      state: 'closed', // closed | opened
+      status: 'pending', //pending | fail | success
+    },
+    {
+      word: 'Hello', //исходное слово
+      translation: 'Привет', // Перевод
+      state: 'opened', // closed | opened
+      status: 'pending', //pending | fail | success
+    },
+    {
+      word: 'Hello', //исходное слово
+      translation: 'Привет', // Перевод
+      state: 'opened', // closed | opened
+      status: 'success', //pending | fail | success
+    },
+    {
+      word: 'Hello', //исходное слово
+      translation: 'Привет', // Перевод
+      state: 'opened', // closed | opened
+      status: 'fail', //pending | fail | success
+    },
+  ])
 </script>
 
 <template>
@@ -19,7 +39,7 @@
   </header>
   <main>
     <VButton>Начать игру</VButton>
-    <VCard />
+    <VCard v-for="(data, idx) in cardData" v-bind="data" :key="idx" />
   </main>
 </template>
 
