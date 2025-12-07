@@ -1,36 +1,22 @@
 <script setup>
+  import getWords from './api/getWords'
   import VButton from './components/VButton.vue'
   import VCard from './components/VCard.vue'
   import VScore from './components/VScore.vue'
-  import { reactive, ref } from 'vue'
+  import { computed, onMounted, reactive, ref } from 'vue'
 
-  let score = ref(50)
-  const cardData = reactive([
-    {
-      word: 'Hello', //исходное слово
-      translation: 'Привет', // Перевод
-      state: 'closed', // closed | opened
-      status: 'pending', //pending | fail | success
-    },
-    {
-      word: 'Hello', //исходное слово
-      translation: 'Привет', // Перевод
-      state: 'opened', // closed | opened
-      status: 'pending', //pending | fail | success
-    },
-    {
-      word: 'Hello', //исходное слово
-      translation: 'Привет', // Перевод
-      state: 'opened', // closed | opened
-      status: 'success', //pending | fail | success
-    },
-    {
-      word: 'Hello', //исходное слово
-      translation: 'Привет', // Перевод
-      state: 'opened', // closed | opened
-      status: 'fail', //pending | fail | success
-    },
-  ])
+  const score = ref(50)
+  const data = reactive([])
+
+  async function modifiedData() {
+    const words = await getWords()
+    for (let item of words) {
+      item = { ...item, state: 'closed', status: 'pending' }
+      data.push(item)
+    }
+  }
+
+  modifiedData()
 </script>
 
 <template>
@@ -39,7 +25,9 @@
   </header>
   <main>
     <VButton>Начать игру</VButton>
-    <VCard v-for="(data, idx) in cardData" v-bind="data" :key="idx" />
+    <div class="card-list">
+      <VCard v-for="(item, idx) in data" v-bind="item" :key="idx" />
+    </div>
   </main>
 </template>
 
@@ -48,5 +36,11 @@
     display: grid;
     place-items: center;
     min-height: 100vh;
+  }
+
+  .card-list {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 66px 107px;
   }
 </style>
