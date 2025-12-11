@@ -9,6 +9,9 @@
     status: String,
   })
 
+  //state - closed | opened
+  // status - success | fail | pending
+
   const cardNumber = (props.idx + 1).toString().padStart(2, '0')
 
   defineEmits(['check-answer', 'change-status'])
@@ -23,7 +26,7 @@
         <button class="card__btn" @click="$emit('check-answer')">ПЕРЕВЕРНУТЬ</button>
       </div>
       <div v-else-if="props.state === 'opened'" class="card__back">
-        <span class="card__numbering">01</span>
+        <span class="card__numbering">{{ cardNumber }}</span>
         <div v-if="props.status === 'success'" class="card__status">
           <VIcons icon-id="tick" :width="36" :height="36" />
         </div>
@@ -32,10 +35,10 @@
         </div>
         <p class="card__word">{{ props.translation }}</p>
         <div v-if="props.status === 'pending'" class="card__change-status">
-          <button class="change-status__btn" @click="$emit('change-status')">
+          <button class="change-status__btn" @click="$emit('change-status', 'fail')">
             <VIcons icon-id="cross" :width="24" :height="24" />
           </button>
-          <button class="change-status__btn" @click="$emit('change-status')">
+          <button class="change-status__btn" @click="$emit('change-status', 'success')">
             <VIcons icon-id="tick" :width="24" :height="24" />
           </button>
         </div>
