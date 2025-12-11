@@ -16,7 +16,9 @@
     }
   }
 
-  modifiedData()
+  onMounted(() => {
+    modifiedData()
+  })
 </script>
 
 <template>
@@ -26,7 +28,7 @@
   <main>
     <VButton>Начать игру</VButton>
     <div class="card-list">
-      <VCard v-for="(item, idx) in data" v-bind="item" :key="idx" />
+      <VCard v-for="(item, idx) in data" v-bind="item" :key="idx" :idx />
     </div>
   </main>
 </template>

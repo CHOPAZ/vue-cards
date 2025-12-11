@@ -2,11 +2,14 @@
   import VIcons from './VIcons.vue'
 
   const props = defineProps({
+    idx: Number,
     word: String,
     translation: String,
     state: String,
     status: String,
   })
+
+  const cardNumber = (props.idx + 1).toString().padStart(2, '0')
 
   defineEmits(['check-answer', 'change-status'])
 </script>
@@ -15,7 +18,7 @@
   <div class="card__container">
     <div class="card" :class="{ rotate: props.state === 'opened' }">
       <div v-if="props.state === 'closed'" class="card__front">
-        <span class="card__numbering">01</span>
+        <span class="card__numbering">{{ cardNumber }}</span>
         <p class="card__word">{{ props.word }}</p>
         <button class="card__btn" @click="$emit('check-answer')">ПЕРЕВЕРНУТЬ</button>
       </div>
